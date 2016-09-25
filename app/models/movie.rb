@@ -1,4 +1,10 @@
 class Movie < ActiveRecord::Base
+  validates :name, :presence => true
+  validates :rating, :numericality => {
+    :greater_than_or_equal_to => 0,
+    :less_than_or_equal_to => 10
+  }
+
   # Pretends to hit some API, which would presumably incur some network latency.
   def self.from_paramount()
     sleep(10)
