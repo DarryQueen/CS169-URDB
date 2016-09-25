@@ -49,6 +49,10 @@ RSpec.describe Movie, type: :model do
       movies.map { |m| Movie.new(m) }
     end
 
+    before :each do
+      allow(Movie).to receive(:from_paramount) { movies_paramount }
+    end
+
     it "should return a valid list of movies" do
       movies = Movie.from_paramount
       movies.each do |movie|
