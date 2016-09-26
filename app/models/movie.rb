@@ -1,6 +1,17 @@
+# == Schema Information
+#
+# Table name: movies
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  rating     :decimal(, )
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Movie < ActiveRecord::Base
   # Pretends to hit some API, which would presumably incur some network latency.
-  def self.from_paramount()
+  def self.from_paramount
     sleep(10)
 
     movies = [
@@ -13,7 +24,7 @@ class Movie < ActiveRecord::Base
   end
 
   # Implement yourself.
-  def self.average_paramount_rating()
+  def self.average_paramount_rating
     return 0.0
   end
 end
