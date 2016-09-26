@@ -18,8 +18,8 @@ class Movie < ActiveRecord::Base
     return movies.map { |m| Movie.new(m) }
   end
 
-  # Implement yourself.
   def self.average_paramount_rating()
-    return 0.0
+    ratings = self.from_paramount.map { |movie| movie.rating }
+    return 1.0 * ratings.reduce(:+) / ratings.size
   end
 end
