@@ -60,4 +60,30 @@ RSpec.describe Movie, type: :model do
       end
     end
   end
+
+  describe "average Paramount rating" do
+    let(:movie_names) {
+      [
+        'Start Trek',
+        'The Wolf of Wall Street',
+        'Forrest Gump',
+        'Mission: Impossible'
+      ]
+    }
+    let(:ratings) { Array.new(movie_names.size) { BigDecimal(Random.rand(100)) / 10 } }
+    let(:movies_paramount) do
+      movie_names.zip(ratings).map do |name, rating|
+        Movie.new(:name => name, :rating => rating)
+      end
+    end
+
+    before :each do
+      allow(Movie).to receive(:from_paramount) { movies_paramount }
+    end
+
+    it "should return the mean rating" do
+      average = 1.0 * ratings.reduce(:+) / ratings.size
+      expect(Movie.average_paramount_rating).to eq(average)
+    end
+  end
 end
