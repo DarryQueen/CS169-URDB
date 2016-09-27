@@ -1,7 +1,18 @@
+# == Schema Information
+#
+# Table name: movies
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  rating     :decimal(, )
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 
 RSpec.describe Movie, type: :model do
-  describe "name" do
+  describe ".name" do
     let(:rating) { 5.0 }
 
     it "should not be nil" do
@@ -17,7 +28,7 @@ RSpec.describe Movie, type: :model do
     end
   end
 
-  describe "ratings" do
+  describe ".rating" do
     let(:movie_name) { 'It\'s a Wonderful Life' }
     let(:rating) { 5.0 }
 
@@ -40,7 +51,7 @@ RSpec.describe Movie, type: :model do
     end
   end
 
-  describe "from Paramount" do
+  describe ".from_paramount" do
     let(:movies_paramount) do
       movies = [
         {:name => 'Star Trek', :rating => 8.0},
